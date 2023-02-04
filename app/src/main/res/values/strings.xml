@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name" translatable="false">RecioBlog</string>
+    <string name="icon_app">App icon</string>
+    <string name="login">Login</string>
+    <string name="welcome">Welcome</string>
+    <string name="sign_in_to_continue">Sign in to continue</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="not_have_account">You don\'t have an account?</string>
+    <string name="sign_up_here">Sign Up here</string>
+    <string name="new_user">New user</string>
+    <string name="registration_form">Registration form</string>
+    <string name="complete_form">Complete this form to register…</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="username">Username</string>
+    <string name="register">Sign up</string>
+    <string name="did_you_forget_your_password">Did you forget your password?</string>
+</resources>
