@@ -15,4 +15,6 @@
     <string name="username">Username</string>
     <string name="register">Sign up</string>
     <string name="did_you_forget_your_password">Did you forget your password?</string>
+    <string name="invalid_email">Invalid email.</string>
+    <string name="error_msg_password">The password must be greater than or equal to 6 characters.</string>
 </resources>

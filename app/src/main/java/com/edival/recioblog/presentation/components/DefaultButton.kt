@@ -16,18 +16,26 @@ import com.edival.recioblog.presentation.ui.theme.primaryColor
 
 @Composable
 fun DefaultButton(
-    text: String, onClick: () -> Unit, color: Color = primaryColor, icon: ImageVector? = null
+    text: String,
+    onClick: () -> Unit,
+    color: Color = primaryColor,
+    icon: ImageVector? = null,
+    enabled: Boolean = false
 ) {
     Button(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = dimensionResource(id = R.dimen.padding_min)),
-        onClick = onClick,
-        colors = ButtonDefaults.buttonColors(
+            .padding(
+                top = dimensionResource(id = R.dimen.padding_min),
+                bottom = dimensionResource(id = R.dimen.padding_ultra_min)
+            ), onClick = onClick, colors = ButtonDefaults.buttonColors(
             backgroundColor = color, contentColor = Color.White
-        )
+        ), enabled = enabled
     ) {
         icon?.let { Icon(imageVector = it, contentDescription = null, tint = Color.White) }
-        Text(text = text)
+        Text(
+            modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.padding_ultra_min)),
+            text = text
+        )
     }
 }

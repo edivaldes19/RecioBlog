@@ -5,67 +5,52 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Card
-import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Email
 import androidx.compose.material.icons.outlined.Person
-import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.edival.recioblog.R
+import com.edival.recioblog.presentation.components.DefaultBox
 import com.edival.recioblog.presentation.components.DefaultButton
 import com.edival.recioblog.presentation.components.DefaultTextField
 import com.edival.recioblog.presentation.components.PasswordTextField
+import com.edival.recioblog.presentation.screens.signup.SignUpViewModel
 import com.edival.recioblog.presentation.ui.theme.primaryColor
 
 @Composable
-fun SignUpContent() {
-    ConstraintLayout(modifier = Modifier.fillMaxSize()) {
+fun SignUpContent(paddingValues: PaddingValues, viewModel: SignUpViewModel = hiltViewModel()) {
+    ConstraintLayout(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(paddingValues)
+    ) {
         val (box, card) = createRefs()
         val topBox = createGuidelineFromTop(0.35f)
         val topCard = createGuidelineFromTop(0.25f)
         val bottomCard = createGuidelineFromTop(0.90f)
-        var username by remember { mutableStateOf("") }
-        var email by remember { mutableStateOf("") }
-        var password by remember { mutableStateOf("") }
-        var confirmPassword by remember { mutableStateOf("") }
-        Box(modifier = Modifier
-            .background(primaryColor)
-            .constrainAs(box) {
-                top.linkTo(parent.top)
-                bottom.linkTo(topBox)
-                start.linkTo(parent.start)
-                end.linkTo(parent.end)
-                height = Dimension.fillToConstraints
-                width = Dimension.fillToConstraints
-            }) {
-            Column(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Icon(
-                    modifier = Modifier
-                        .padding(all = dimensionResource(id = R.dimen.padding_max))
-                        .size(dimensionResource(id = R.dimen.icon_big_size)),
-                    imageVector = Icons.Outlined.Person,
-                    contentDescription = null,
-                    tint = Color.White
-                )
-            }
-        }
+        DefaultBox(
+            modifier = Modifier
+                .background(primaryColor)
+                .constrainAs(box) {
+                    top.linkTo(parent.top)
+                    bottom.linkTo(topBox)
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                    height = Dimension.fillToConstraints
+                    width = Dimension.fillToConstraints
+                }, iconId = R.drawable.outline_person_add_alt
+        )
         Card(modifier = Modifier
-            .padding(
-                start = dimensionResource(id = R.dimen.padding_default),
-                end = dimensionResource(id = R.dimen.padding_default)
-            )
+            .padding(horizontal = dimensionResource(id = R.dimen.padding_default))
             .constrainAs(card) {
                 top.linkTo(topCard)
                 bottom.linkTo(bottomCard)
@@ -92,39 +77,51 @@ fun SignUpContent() {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(vertical = dimensionResource(id = R.dimen.padding_min)),
-                    value = username,
-                    onValueChange = { username = it },
+                    value = viewModel.username.value,
+                    onValueChange = { viewModel.username.value = it },
+                    validateField = { viewModel.validateUsername() },
+                    keyboardType = KeyboardType.Text,
                     label = stringResource(id = R.string.username),
                     icon = Icons.Outlined.Person,
-                    keyboardType = KeyboardType.Text
+                    errMsg = viewModel.usernameErrMsg.value
                 )
                 DefaultTextField(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(vertical = dimensionResource(id = R.dimen.padding_min)),
-                    value = email,
-                    onValueChange = { email = it },
+                    value = viewModel.email.value,
+                    onValueChange = { viewModel.email.value = it },
+                    validateField = { viewModel.validateEmail() },
                     label = stringResource(id = R.string.email),
                     icon = Icons.Outlined.Email,
-                    keyboardType = KeyboardType.Email
+                    keyboardType = KeyboardType.Email,
+                    errMsg = viewModel.emailErrMsg.value
                 )
                 PasswordTextField(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(vertical = dimensionResource(id = R.dimen.padding_min)),
-                    value = password,
-                    onValueChange = { password = it },
-                    label = stringResource(id = R.string.password)
+                    value = viewModel.password.value,
+                    onValueChange = { viewModel.password.value = it },
+                    validateField = { viewModel.validatePassword() },
+                    label = stringResource(id = R.string.password),
+                    errMsg = viewModel.passwordErrMsg.value
                 )
                 PasswordTextField(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(vertical = dimensionResource(id = R.dimen.padding_min)),
-                    value = confirmPassword,
-                    onValueChange = { confirmPassword = it },
-                    label = stringResource(id = R.string.confirm_password)
+                    value = viewModel.confirmPassword.value,
+                    onValueChange = { viewModel.confirmPassword.value = it },
+                    validateField = { viewModel.validateBothPasswords() },
+                    label = stringResource(id = R.string.confirm_password),
+                    errMsg = viewModel.confirmPasswordErrMsg.value
                 )
-                DefaultButton(text = stringResource(id = R.string.register), onClick = {})
+                DefaultButton(
+                    text = stringResource(id = R.string.register),
+                    onClick = {},
+                    enabled = viewModel.isEnabledSignUpButton.value
+                )
             }
         }
     }

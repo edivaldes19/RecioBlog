@@ -11,7 +11,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.edival.recioblog.presentation.navigation.AppNavigation
 import com.edival.recioblog.presentation.ui.theme.RecioBlogTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     private lateinit var navController: NavHostController
     override fun onCreate(savedInstanceState: Bundle?) {
