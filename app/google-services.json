@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "53737566300",
+    "project_id": "recioblog",
+    "storage_bucket": "recioblog.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:53737566300:android:f90a1e5fedbe23bc7a7699",
+        "android_client_info": {
+          "package_name": "com.edival.recioblog"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "53737566300-uihl1fforbg21i7so308nhcn1ok37vuf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.edival.recioblog",
+            "certificate_hash": "a03b8e610984c20eb363e892d59cb9d96b393cea"
+          }
+        },
+        {
+          "client_id": "53737566300-4cmlputr1m2b4k00ig7u0c8naiq4jblg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmB7sdLZF5Q-uJGE9rY17xdiRF6lavTYw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "53737566300-4cmlputr1m2b4k00ig7u0c8naiq4jblg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

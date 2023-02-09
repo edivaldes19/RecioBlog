@@ -22,7 +22,7 @@ fun DefaultBox(
     modifier: Modifier,
     @DrawableRes iconId: Int,
     @StringRes contentId: Int? = null,
-    @StringRes textId: Int? = null,
+    @StringRes textId: Int? = null
 ) {
     Box(modifier = modifier) {
         Column(

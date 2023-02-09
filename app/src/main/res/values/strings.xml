@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name" translatable="false">RecioBlog</string>
     <string name="icon_app">App icon</string>
-    <string name="login">Login</string>
+    <string name="login">Log in</string>
     <string name="welcome">Welcome</string>
     <string name="sign_in_to_continue">Sign in to continue</string>
     <string name="email">Email</string>
@@ -17,4 +17,19 @@
     <string name="did_you_forget_your_password">Did you forget your password?</string>
     <string name="invalid_email">Invalid email.</string>
     <string name="error_msg_password">The password must be greater than or equal to 6 characters.</string>
+    <string name="unknown_error">An unknown error occurred.</string>
+    <string name="unknown_user">Unknown user</string>
+    <string name="user_welcome">Welcome %1$s</string>
+    <string name="sign_off">Sign off</string>
+    <string name="edit_profile">Update profile</string>
+    <string name="unknown_email">Unknown email</string>
+    <string name="notice_about_profile_editing">For security reasons, you can only update your username and profile picture.</string>
+    <string name="profile_updated_successfully">Profile updated successfully.</string>
+    <string name="profile_picture">Profile picture.</string>
+    <string name="select_an_option">Select an option</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="posts">Posts</string>
+    <string name="my_posts">My posts</string>
+    <string name="profile">Profile</string>
 </resources>

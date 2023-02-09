@@ -12,7 +12,6 @@ import androidx.compose.material.icons.outlined.Lock
 import androidx.compose.material.icons.outlined.Star
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.integerResource
 import androidx.compose.ui.text.input.KeyboardType
@@ -20,6 +19,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.sp
 import com.edival.recioblog.R
+import com.edival.recioblog.presentation.ui.theme.errorRed
 
 @Composable
 fun PasswordTextField(
@@ -56,7 +56,7 @@ fun PasswordTextField(
                 modifier = Modifier.padding(bottom = dimensionResource(id = R.dimen.padding_min)),
                 text = it,
                 fontSize = integerResource(id = R.integer.font_small).sp,
-                color = Color.Magenta
+                color = errorRed
             )
         }
     }

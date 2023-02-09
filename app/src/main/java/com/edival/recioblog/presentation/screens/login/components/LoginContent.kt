@@ -30,6 +30,7 @@ import com.edival.recioblog.presentation.ui.theme.primaryLightColor
 
 @Composable
 fun LoginContent(paddingValues: PaddingValues, viewModel: LoginViewModel = hiltViewModel()) {
+    val state = viewModel.state
     ConstraintLayout(
         modifier = Modifier
             .fillMaxSize()
@@ -82,23 +83,23 @@ fun LoginContent(paddingValues: PaddingValues, viewModel: LoginViewModel = hiltV
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(vertical = dimensionResource(id = R.dimen.padding_min)),
-                    value = viewModel.email.value,
-                    onValueChange = { viewModel.email.value = it },
+                    value = state.email,
+                    onValueChange = { viewModel.onEmailInput(it) },
                     validateField = { viewModel.validateEmail() },
                     label = stringResource(id = R.string.email),
                     icon = Icons.Outlined.Email,
                     keyboardType = KeyboardType.Email,
-                    errMsg = viewModel.emailErrMsg.value
+                    errMsg = viewModel.emailErrMsg
                 )
                 PasswordTextField(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(vertical = dimensionResource(id = R.dimen.padding_min)),
-                    value = viewModel.password.value,
-                    onValueChange = { viewModel.password.value = it },
+                    value = state.password,
+                    onValueChange = { viewModel.onPasswordInput(it) },
                     validateField = { viewModel.validatePassword() },
                     label = stringResource(id = R.string.password),
-                    errMsg = viewModel.passwordErrMsg.value
+                    errMsg = viewModel.passwordErrMsg
                 )
                 Text(modifier = Modifier
                     .clickable {}
@@ -107,9 +108,16 @@ fun LoginContent(paddingValues: PaddingValues, viewModel: LoginViewModel = hiltV
                     color = primaryLightColor,
                     textAlign = TextAlign.End)
                 DefaultButton(
-                    text = stringResource(id = R.string.login),
-                    onClick = {},
-                    enabled = viewModel.isEnabledLoginButton.value
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(
+                            top = dimensionResource(id = R.dimen.padding_min),
+                            bottom = dimensionResource(id = R.dimen.padding_ultra_min)
+                        ),
+                    textId = R.string.login,
+                    onClick = { viewModel.login() },
+                    icon = R.drawable.outline_login,
+                    enabled = viewModel.isEnabledLoginButton
                 )
             }
         }

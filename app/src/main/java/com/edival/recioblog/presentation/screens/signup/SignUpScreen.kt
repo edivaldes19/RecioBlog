@@ -6,6 +6,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import com.edival.recioblog.R
 import com.edival.recioblog.presentation.components.DefaultTopBar
+import com.edival.recioblog.presentation.screens.signup.components.SignUp
 import com.edival.recioblog.presentation.screens.signup.components.SignUpContent
 
 @Composable
@@ -16,5 +17,6 @@ fun SignUpScreen(navController: NavHostController) {
             upAvailable = true,
             navController = navController
         )
-    }, content = { SignUpContent(it) }, bottomBar = {})
+    }, content = { padding -> SignUpContent(padding) }, bottomBar = {})
+    SignUp(navController = navController)
 }

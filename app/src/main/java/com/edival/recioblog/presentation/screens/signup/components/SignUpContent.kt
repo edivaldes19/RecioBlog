@@ -28,6 +28,7 @@ import com.edival.recioblog.presentation.ui.theme.primaryColor
 
 @Composable
 fun SignUpContent(paddingValues: PaddingValues, viewModel: SignUpViewModel = hiltViewModel()) {
+    val state = viewModel.state
     ConstraintLayout(
         modifier = Modifier
             .fillMaxSize()
@@ -77,50 +78,57 @@ fun SignUpContent(paddingValues: PaddingValues, viewModel: SignUpViewModel = hil
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(vertical = dimensionResource(id = R.dimen.padding_min)),
-                    value = viewModel.username.value,
-                    onValueChange = { viewModel.username.value = it },
+                    value = state.username,
+                    onValueChange = { viewModel.onUsernameInput(it) },
                     validateField = { viewModel.validateUsername() },
                     keyboardType = KeyboardType.Text,
                     label = stringResource(id = R.string.username),
                     icon = Icons.Outlined.Person,
-                    errMsg = viewModel.usernameErrMsg.value
+                    errMsg = viewModel.usernameErrMsg
                 )
                 DefaultTextField(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(vertical = dimensionResource(id = R.dimen.padding_min)),
-                    value = viewModel.email.value,
-                    onValueChange = { viewModel.email.value = it },
+                    value = state.email,
+                    onValueChange = { viewModel.onEmailInput(it) },
                     validateField = { viewModel.validateEmail() },
                     label = stringResource(id = R.string.email),
                     icon = Icons.Outlined.Email,
                     keyboardType = KeyboardType.Email,
-                    errMsg = viewModel.emailErrMsg.value
+                    errMsg = viewModel.emailErrMsg
                 )
                 PasswordTextField(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(vertical = dimensionResource(id = R.dimen.padding_min)),
-                    value = viewModel.password.value,
-                    onValueChange = { viewModel.password.value = it },
+                    value = state.password,
+                    onValueChange = { viewModel.onPasswordInput(it) },
                     validateField = { viewModel.validatePassword() },
                     label = stringResource(id = R.string.password),
-                    errMsg = viewModel.passwordErrMsg.value
+                    errMsg = viewModel.passwordErrMsg
                 )
                 PasswordTextField(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(vertical = dimensionResource(id = R.dimen.padding_min)),
-                    value = viewModel.confirmPassword.value,
-                    onValueChange = { viewModel.confirmPassword.value = it },
+                    value = state.confirmPassword,
+                    onValueChange = { viewModel.onConfirmPasswordInput(it) },
                     validateField = { viewModel.validateBothPasswords() },
                     label = stringResource(id = R.string.confirm_password),
-                    errMsg = viewModel.confirmPasswordErrMsg.value
+                    errMsg = viewModel.confirmPasswordErrMsg
                 )
                 DefaultButton(
-                    text = stringResource(id = R.string.register),
-                    onClick = {},
-                    enabled = viewModel.isEnabledSignUpButton.value
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(
+                            top = dimensionResource(id = R.dimen.padding_min),
+                            bottom = dimensionResource(id = R.dimen.padding_ultra_min)
+                        ),
+                    textId = R.string.register,
+                    onClick = { viewModel.signUp() },
+                    icon = R.drawable.outline_person_add_alt,
+                    enabled = viewModel.isEnabledSignUpButton
                 )
             }
         }

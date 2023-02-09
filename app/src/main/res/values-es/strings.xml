@@ -17,4 +17,19 @@
     <string name="did_you_forget_your_password">¿Olvidaste tu contraseña?</string>
     <string name="invalid_email">Correo electrónico inválido..</string>
     <string name="error_msg_password">La contraseña debe ser mayor o igual a 6 caracteres.</string>
+    <string name="unknown_error">Ocurrió un error desconocido.</string>
+    <string name="unknown_user">Usuario desconocido.</string>
+    <string name="user_welcome">Bienvenido(a) %1$s</string>
+    <string name="sign_off">Cerrar sesión</string>
+    <string name="edit_profile">Actualizar perfil</string>
+    <string name="unknown_email">Correo electrónico desconocido</string>
+    <string name="notice_about_profile_editing">Por motivos de seguridad, únicamente puedes actualizar tu nombre de usuario e imagen de perfil.</string>
+    <string name="profile_updated_successfully">Perfil actualizado exitosamente.</string>
+    <string name="profile_picture">Foto de perfil.</string>
+    <string name="select_an_option">Seleccione una opción</string>
+    <string name="camera">Cámara</string>
+    <string name="gallery">Galería</string>
+    <string name="posts">Publicaciones</string>
+    <string name="my_posts">Mis publicaciones</string>
+    <string name="profile">Perfil</string>
 </resources>

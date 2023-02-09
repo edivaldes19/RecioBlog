@@ -13,7 +13,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.NavHostController
 import com.edival.recioblog.R
-import com.edival.recioblog.presentation.navigation.AppScreen
+import com.edival.recioblog.presentation.navigation.AuthScreen
 import com.edival.recioblog.presentation.ui.theme.primaryLightColor
 
 @Composable
@@ -29,7 +29,7 @@ fun LoginBottomBar(navController: NavHostController) {
             text = stringResource(id = R.string.not_have_account),
         )
         Text(modifier = Modifier
-            .clickable { navController.navigate(route = AppScreen.SignUp.route) }
+            .clickable { navController.navigate(route = AuthScreen.SignUp.route) }
             .padding(all = dimensionResource(id = R.dimen.padding_ultra_min)),
             text = stringResource(id = R.string.sign_up_here),
             color = primaryLightColor,
