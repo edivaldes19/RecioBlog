@@ -8,5 +8,6 @@ interface AuthRepository {
     val currentUser: FirebaseUser?
     suspend fun login(email: String, password: String): Response<FirebaseUser>
     suspend fun signUp(user: User): Response<FirebaseUser>
+    suspend fun resetPassword(email: String): Response<String>
     fun logOut()
 }

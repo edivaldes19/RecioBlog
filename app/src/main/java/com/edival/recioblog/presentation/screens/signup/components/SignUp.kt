@@ -15,7 +15,7 @@ import com.edival.recioblog.presentation.screens.signup.SignUpViewModel
 
 @Composable
 fun SignUp(navController: NavHostController, viewModel: SignUpViewModel = hiltViewModel()) {
-    when (val signupResponse = viewModel.signInResponse) {
+    when (val response = viewModel.signInResponse) {
         Response.Loading -> DefaultProgressBar()
         is Response.Success -> {
             LaunchedEffect(Unit) {
@@ -29,7 +29,7 @@ fun SignUp(navController: NavHostController, viewModel: SignUpViewModel = hiltVi
         is Response.Failure -> {
             Toast.makeText(
                 LocalContext.current,
-                signupResponse.exception?.message ?: stringResource(id = R.string.unknown_error),
+                response.exception?.message ?: stringResource(id = R.string.unknown_error),
                 Toast.LENGTH_SHORT
             ).show()
         }

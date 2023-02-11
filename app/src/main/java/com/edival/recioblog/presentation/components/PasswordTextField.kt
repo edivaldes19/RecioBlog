@@ -9,11 +9,11 @@ import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Lock
-import androidx.compose.material.icons.outlined.Star
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.integerResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -42,19 +42,20 @@ fun PasswordTextField(
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             label = { Text(text = label) },
             trailingIcon = {
-                val image = if (passwordVisible) Icons.Outlined.Star else Icons.Outlined.Lock
+                val icon =
+                    if (passwordVisible) R.drawable.outline_visibility_off else R.drawable.outline_visibility
                 IconButton(onClick = { passwordVisible = !passwordVisible }) {
-                    Icon(imageVector = image, contentDescription = null)
+                    Icon(painter = painterResource(id = icon), contentDescription = null)
                 }
             },
             leadingIcon = { Icon(imageVector = Icons.Outlined.Lock, contentDescription = null) },
             visualTransformation = if (passwordVisible) PasswordVisualTransformation() else VisualTransformation.None,
             isError = errMsg != null
         )
-        errMsg?.let {
+        errMsg?.let { error ->
             Text(
                 modifier = Modifier.padding(bottom = dimensionResource(id = R.dimen.padding_min)),
-                text = it,
+                text = error,
                 fontSize = integerResource(id = R.integer.font_small).sp,
                 color = errorRed
             )

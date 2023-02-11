@@ -5,4 +5,5 @@
     <dimen name="padding_default">16dp</dimen>
     <dimen name="padding_max">24dp</dimen>
     <dimen name="icon_big_size">150dp</dimen>
+    <dimen name="icon_small_size">50dp</dimen>
 </resources>

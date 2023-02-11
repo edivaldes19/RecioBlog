@@ -32,4 +32,32 @@
     <string name="posts">Posts</string>
     <string name="my_posts">My posts</string>
     <string name="profile">Profile</string>
+    <string name="add_post">Add Post…</string>
+    <string name="click_here_to_attach_image">Click here to attach an image…</string>
+    <string name="name_of_the_game">Name of the game</string>
+    <string name="description">Description</string>
+    <string name="categories">Categories</string>
+    <string name="pc" translatable="false">PC</string>
+    <string name="ps4" translatable="false">PS4</string>
+    <string name="xbox" translatable="false">xBox</string>
+    <string name="nintendo" translatable="false">Nintendo</string>
+    <string name="mobile_phone">Mobile phone</string>
+    <string name="post">Post</string>
+    <string name="post_created_successfully">Post created successfully.</string>
+    <string name="unknown_post">Unknown post</string>
+    <string name="unknown_description">Unknown description</string>
+    <string name="unknown_title">Unknown title</string>
+    <string name="unknown_category">Unknown category</string>
+    <string name="post_detail">Post detail</string>
+    <string name="new_post">New post</string>
+    <string name="edit_post">Update post</string>
+    <string name="name_err_msg">The name cannot be empty.</string>
+    <string name="desc_err_msg">The description cannot be empty.</string>
+    <string name="username_err_msg">The username must be greater than or equal to 5 characters.</string>
+    <string name="email_err_msg">Invalid email.</string>
+    <string name="password_err_msg">The password must be greater than or equal to 6 characters.</string>
+    <string name="confirm_password_err_msg">Passwords don\'t match.</string>
+    <string name="update">Update</string>
+    <string name="post_updated_successfully">Post updated successfully.</string>
+    <string name="sent_email_reset_password">A verification email has been sent to: %1$s.</string>
 </resources>

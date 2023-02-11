@@ -8,7 +8,6 @@ import com.edival.recioblog.R
 import com.edival.recioblog.presentation.components.DefaultTopBar
 import com.edival.recioblog.presentation.screens.profile_edit.components.ProfileEditContent
 import com.edival.recioblog.presentation.screens.profile_edit.components.Update
-import com.edival.recioblog.presentation.screens.profile_edit.components.UploadImage
 
 @Composable
 fun ProfileEditScreen(navController: NavHostController) {
@@ -19,6 +18,5 @@ fun ProfileEditScreen(navController: NavHostController) {
             navController = navController
         )
     }, content = { padding -> ProfileEditContent(padding) }, bottomBar = {})
-    UploadImage()
     Update(navController = navController)
 }

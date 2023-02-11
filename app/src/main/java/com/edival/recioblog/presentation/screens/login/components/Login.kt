@@ -15,7 +15,7 @@ import com.edival.recioblog.presentation.screens.login.LoginViewModel
 
 @Composable
 fun Login(navController: NavHostController, viewModel: LoginViewModel = hiltViewModel()) {
-    when (val loginResponse = viewModel.loginResponse) {
+    when (val response = viewModel.loginResponse) {
         Response.Loading -> DefaultProgressBar()
         is Response.Success -> {
             LaunchedEffect(Unit) {
@@ -27,7 +27,7 @@ fun Login(navController: NavHostController, viewModel: LoginViewModel = hiltView
         is Response.Failure -> {
             Toast.makeText(
                 LocalContext.current,
-                loginResponse.exception?.message ?: stringResource(id = R.string.unknown_error),
+                response.exception?.message ?: stringResource(id = R.string.unknown_error),
                 Toast.LENGTH_SHORT
             ).show()
         }

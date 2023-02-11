@@ -11,6 +11,7 @@ import androidx.compose.material.icons.outlined.Email
 import androidx.compose.material.icons.outlined.Person
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -29,6 +30,7 @@ import com.edival.recioblog.presentation.ui.theme.primaryColor
 @Composable
 fun SignUpContent(paddingValues: PaddingValues, viewModel: SignUpViewModel = hiltViewModel()) {
     val state = viewModel.state
+    val ctx = LocalContext.current
     ConstraintLayout(
         modifier = Modifier
             .fillMaxSize()
@@ -80,7 +82,7 @@ fun SignUpContent(paddingValues: PaddingValues, viewModel: SignUpViewModel = hil
                         .padding(vertical = dimensionResource(id = R.dimen.padding_min)),
                     value = state.username,
                     onValueChange = { viewModel.onUsernameInput(it) },
-                    validateField = { viewModel.validateUsername() },
+                    validateField = { viewModel.validateUsername(ctx) },
                     keyboardType = KeyboardType.Text,
                     label = stringResource(id = R.string.username),
                     icon = Icons.Outlined.Person,
@@ -92,7 +94,7 @@ fun SignUpContent(paddingValues: PaddingValues, viewModel: SignUpViewModel = hil
                         .padding(vertical = dimensionResource(id = R.dimen.padding_min)),
                     value = state.email,
                     onValueChange = { viewModel.onEmailInput(it) },
-                    validateField = { viewModel.validateEmail() },
+                    validateField = { viewModel.validateEmail(ctx) },
                     label = stringResource(id = R.string.email),
                     icon = Icons.Outlined.Email,
                     keyboardType = KeyboardType.Email,
@@ -104,7 +106,7 @@ fun SignUpContent(paddingValues: PaddingValues, viewModel: SignUpViewModel = hil
                         .padding(vertical = dimensionResource(id = R.dimen.padding_min)),
                     value = state.password,
                     onValueChange = { viewModel.onPasswordInput(it) },
-                    validateField = { viewModel.validatePassword() },
+                    validateField = { viewModel.validatePassword(ctx) },
                     label = stringResource(id = R.string.password),
                     errMsg = viewModel.passwordErrMsg
                 )
@@ -114,7 +116,7 @@ fun SignUpContent(paddingValues: PaddingValues, viewModel: SignUpViewModel = hil
                         .padding(vertical = dimensionResource(id = R.dimen.padding_min)),
                     value = state.confirmPassword,
                     onValueChange = { viewModel.onConfirmPasswordInput(it) },
-                    validateField = { viewModel.validateBothPasswords() },
+                    validateField = { viewModel.validateBothPasswords(ctx) },
                     label = stringResource(id = R.string.confirm_password),
                     errMsg = viewModel.confirmPasswordErrMsg
                 )

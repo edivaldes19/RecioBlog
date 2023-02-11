@@ -8,6 +8,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.edival.recioblog.R
 import com.edival.recioblog.core.Constants
 import com.edival.recioblog.domain.model.Response
 import com.edival.recioblog.domain.model.User
@@ -15,7 +16,6 @@ import com.edival.recioblog.domain.use_cases.users.UsersUseCases
 import com.edival.recioblog.presentation.utils.ComposeFileProvider
 import com.edival.recioblog.presentation.utils.ResultingActivityHandler
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import java.io.File
@@ -31,9 +31,7 @@ class ProfileEditViewModel @Inject constructor(
         private set
     var usernameErrMsg: String? by mutableStateOf(null)
         private set
-    var updateResponse by mutableStateOf<Response<Boolean>?>(null)
-        private set
-    var uploadImageResponse by mutableStateOf<Response<String>?>(null)
+    var updateProfileResponse by mutableStateOf<Response<Boolean>?>(null)
         private set
     var stateDialog: MutableState<Boolean> = mutableStateOf(false)
     val resultingActivityHandler = ResultingActivityHandler()
@@ -71,28 +69,20 @@ class ProfileEditViewModel @Inject constructor(
         }
     }
 
-    fun update(url: String): Job = viewModelScope.launch(Dispatchers.IO) {
-        val userUpdate = User(id = user.id, username = state.username, imgUrl = url)
-        updateResponse = Response.Loading
-        val result = usersUseCases.update(userUpdate)
-        updateResponse = result
+    fun updateProfile(): Job = viewModelScope.launch {
+        val userUpdate = User(id = user.id, username = state.username, imgUrl = user.imgUrl)
+        updateProfileResponse = Response.Loading
+        val result = usersUseCases.update(userUpdate, file)
+        updateProfileResponse = result
     }
 
-    fun uploadImage(): Job = viewModelScope.launch(Dispatchers.IO) {
-        file?.let { photo ->
-            uploadImageResponse = Response.Loading
-            val result = usersUseCases.uploadImage(photo)
-            uploadImageResponse = result
-        }
-    }
-
-    fun validateUsername() {
+    fun validateUsername(ctx: Context) {
         if (state.username.length >= 5) {
             isUsernameValid = true
             usernameErrMsg = null
         } else {
             isUsernameValid = false
-            usernameErrMsg = "El nombre de usuario debe ser mayor o igual a 5 caracteres."
+            usernameErrMsg = ctx.getString(R.string.username_err_msg)
         }
     }
 }

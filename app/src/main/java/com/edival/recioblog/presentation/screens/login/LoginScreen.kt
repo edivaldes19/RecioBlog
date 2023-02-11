@@ -6,6 +6,7 @@ import androidx.navigation.NavHostController
 import com.edival.recioblog.presentation.screens.login.components.Login
 import com.edival.recioblog.presentation.screens.login.components.LoginBottomBar
 import com.edival.recioblog.presentation.screens.login.components.LoginContent
+import com.edival.recioblog.presentation.screens.login.components.ResetPassword
 
 @Composable
 fun LoginScreen(navController: NavHostController) {
@@ -13,4 +14,5 @@ fun LoginScreen(navController: NavHostController) {
         content = { padding -> LoginContent(padding) },
         bottomBar = { LoginBottomBar(navController = navController) })
     Login(navController = navController)
+    ResetPassword()
 }

@@ -9,7 +9,6 @@ import com.edival.recioblog.domain.model.User
 import com.edival.recioblog.domain.use_cases.auth.AuthUseCases
 import com.edival.recioblog.domain.use_cases.users.UsersUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -21,7 +20,7 @@ class ProfileViewModel @Inject constructor(
         private set
 
     init {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             authUseCases.getCurrentUser()?.let { user ->
                 usersUseCases.getUserById(user.uid).collect { userRT -> userData = userRT }
             }
@@ -29,6 +28,6 @@ class ProfileViewModel @Inject constructor(
     }
 
     fun logOut() {
-        authUseCases.logOut()
+        authUseCases.signOff()
     }
 }

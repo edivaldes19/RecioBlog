@@ -6,18 +6,22 @@ import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
 
 data class User(
-    @get:Exclude var id: String? = null,
-    var username: String? = null,
     var email: String? = null,
-    @get:Exclude var password: String? = null,
-    var imgUrl: String? = null
+    var id: String? = null,
+    var imgUrl: String? = null,
+    var username: String? = null,
+    @get:Exclude var password: String? = null
 ) {
     fun toJson(): String {
         return Gson().toJson(
             User(
-                id, username, email, password, if (imgUrl != null) {
-                    URLEncoder.encode(imgUrl, StandardCharsets.UTF_8.toString())
-                } else null
+                email = email,
+                id = id,
+                imgUrl = imgUrl?.let { url ->
+                    URLEncoder.encode(url, StandardCharsets.UTF_8.toString())
+                },
+                username = username,
+                password = password,
             )
         )
     }

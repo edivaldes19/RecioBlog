@@ -34,8 +34,8 @@ fun ProfileEditContent(
     paddingValues: PaddingValues, viewModel: ProfileEditViewModel = hiltViewModel()
 ) {
     val state = viewModel.state
-    viewModel.resultingActivityHandler.Handle()
     val ctx = LocalContext.current
+    viewModel.resultingActivityHandler.Handle()
     DialogCapturePicture(status = viewModel.stateDialog,
         takePhoto = { viewModel.getImage(ctx, false) },
         pickImage = { viewModel.getImage(ctx, true) })
@@ -67,7 +67,7 @@ fun ProfileEditContent(
                 bottom.linkTo(topCard)
                 start.linkTo(parent.start)
                 end.linkTo(parent.end)
-            }, url = viewModel.state.imgUrl
+            }, url = viewModel.state.imgUrl, iconId = R.drawable.outline_person
         )
         Card(modifier = Modifier
             .padding(horizontal = dimensionResource(id = R.dimen.padding_default))
@@ -95,7 +95,7 @@ fun ProfileEditContent(
                         .padding(vertical = dimensionResource(id = R.dimen.padding_min)),
                     value = state.username,
                     onValueChange = { viewModel.onUsernameInput(it) },
-                    validateField = { viewModel.validateUsername() },
+                    validateField = { viewModel.validateUsername(ctx) },
                     keyboardType = KeyboardType.Text,
                     label = stringResource(id = R.string.username),
                     icon = Icons.Outlined.Person,
@@ -109,7 +109,7 @@ fun ProfileEditContent(
                             bottom = dimensionResource(id = R.dimen.padding_ultra_min)
                         ),
                     textId = R.string.edit_profile,
-                    onClick = { viewModel.uploadImage() },
+                    onClick = { viewModel.updateProfile() },
                     icon = R.drawable.outline_edit,
                     enabled = viewModel.isUsernameValid
                 )

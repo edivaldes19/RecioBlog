@@ -80,7 +80,7 @@ fun ProfileContent(
                 bottom.linkTo(topBox)
                 start.linkTo(parent.start)
                 end.linkTo(parent.end)
-            }, url = viewModel.userData.imgUrl
+            }, url = viewModel.userData.imgUrl, iconId = R.drawable.outline_person
         )
         Column(
             modifier = Modifier

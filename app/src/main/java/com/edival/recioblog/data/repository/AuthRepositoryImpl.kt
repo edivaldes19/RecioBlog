@@ -29,6 +29,15 @@ class AuthRepositoryImpl
         }
     }
 
+    override suspend fun resetPassword(email: String): Response<String> {
+        return try {
+            auth.sendPasswordResetEmail(email).await()
+            Response.Success(email)
+        } catch (e: Exception) {
+            Response.Failure(e)
+        }
+    }
+
     override fun logOut() {
         auth.signOut()
     }
